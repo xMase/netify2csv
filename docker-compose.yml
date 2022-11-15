@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  pcap_anal:
+    build: .
+    tty: true
+    stdin_open: true
+    environment:
+      - input=/app/res/large.pcap
+      - output=/app/output/output.csv
+    volumes:
+      - ./output:/app/output
