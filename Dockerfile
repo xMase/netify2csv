@@ -2,7 +2,7 @@ FROM centos:7
 
 WORKDIR /app
 
-ENV netify_file netifyd-4.2.4-1.os7.x86_64.rpm
+ENV netify_file netifyd-4.3.5-1.os7.x86_64.rpm
 
 ENV input $input
 ENV output $output
