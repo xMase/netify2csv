@@ -1,16 +1,19 @@
 FROM centos:7
 
+WORKDIR /app
+
+ENV netify_file netifyd-4.2.4-1.os7.x86_64.rpm
+
 ENV input $input
 ENV output $output
 
-RUN rpm --import http://download.netify.ai/netify/centos/`rpm --eval '%{centos_ver}'`/stable/RPM-GPG-KEY-netify
-RUN curl http://download.netify.ai/netify/centos/`rpm --eval '%{centos_ver}'`/netify.repo -o /etc/yum.repos.d/netify.repo
-RUN yum install -y netifyd socat python3-pip nc
-
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /app
+RUN yum install -y socat python3-pip
+
 COPY . /app
+
+RUN yum localinstall -y /app/res/${netify_file} 
 
 RUN chmod +x docker/entrypoint.sh
 
